@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOM Quiz Privacy</title>
+<meta name="description" content="What DOM Quiz stores, where, and how to delete it.">
+<style>
+  :root {
+    --bg: #faf8ff;
+    --panel: #ffffff;
+    --ink: #1c1330;
+    --muted: #5b5170;
+    --line: #e4ddf2;
+    --accent: #6d28d9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #140f22;
+      --panel: #1d1733;
+      --ink: #f3f0fa;
+      --muted: #b1a8c8;
+      --line: #322a4d;
+      --accent: #c084fc;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 16px 64px;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  header {
+    padding: 40px 0 20px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .brand {
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  nav { display: flex; gap: 8px; margin-top: 18px; }
+  nav button {
+    font: inherit;
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 16px;
+    cursor: pointer;
+  }
+  nav button[aria-selected="true"] {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  h1 { font-size: 28px; line-height: 1.25; margin: 28px 0 4px; }
+  h2 { font-size: 19px; margin: 36px 0 8px; }
+  p { margin: 12px 0; }
+  ul { margin: 12px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  code {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-size: .9em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 11px 13px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { font-weight: 700; }
+  tr:last-child td { border-bottom: 0; }
+  section[hidden] { display: none; }
+  @media (max-width: 560px) {
+    table, th, td { display: block; }
+    th { display: none; }
+    td { border-bottom: 0; padding: 4px 13px; }
+    td:first-child { padding-top: 13px; font-weight: 700; font-size: 16px; }
+    td:last-child { padding-bottom: 13px; border-bottom: 1px solid var(--line); }
+    td:not(:first-child)::before {
+      content: attr(data-label) ": ";
+      color: var(--muted);
+      font-weight: 600;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">DOM Quiz</div>
+    <nav>
+      <button id="btn-el" aria-selected="true">Ελληνικά</button>
+      <button id="btn-en" aria-selected="false">English</button>
+    </nav>
+  </header>
+
+  <section id="el"><h1>DOM Quiz — Πολιτική Απορρήτου</h1>
+<p><strong>Τελευταία ενημέρωση: 22 Νοεμβρίου 2026</strong></p>
+<p>Το DOM Quiz είναι ένα παιχνίδι ερωτήσεων. Αυτή η σελίδα περιγράφει ακριβώς τι αποθηκεύει η εφαρμογή, πού αποθηκεύεται, και πώς διαγράφεται. Είναι γραμμένη με βάση το τι κάνει πραγματικά ο κώδικας, όχι με βάση ένα πρότυπο.</p>
+<h2>Ποιος είναι υπεύθυνος</h2>
+<p>Το DOM Quiz είναι ανεξάρτητη εφαρμογή ενός προγραμματιστή. Για οποιαδήποτε ερώτηση σχετικά με τα δεδομένα σου, ή για να ζητήσεις διαγραφή ή εξαγωγή τους, γράψε στη διεύθυνση επικοινωνίας στο τέλος της σελίδας.</p>
+<h2>Τι αποθηκεύει η εφαρμογή για εσένα</h2>
+<p>Ένας λογαριασμός είναι <strong>ένα όνομα χρήστη και ένας κωδικός</strong>. Τίποτε άλλο δεν απαιτείται.</p>
+<table>
+<tr><th>Τι</th><th>Γιατί</th><th>Πότε</th></tr>
+<tr><td data-label="Τι">Όνομα χρήστη</td><td data-label="Γιατί">Για να βλέπουν οι άλλοι παίκτες με ποιον παίζουν</td><td data-label="Πότε">Πάντα</td></tr>
+<tr><td data-label="Τι">Email</td><td data-label="Γιατί"><strong>Προαιρετικό.</strong> Μόνο για επαναφορά ξεχασμένου κωδικού</td><td data-label="Πότε">Μόνο αν το δώσεις</td></tr>
+<tr><td data-label="Τι">Κωδικός</td><td data-label="Γιατί">Για τη σύνδεσή σου. Αποθηκεύεται μόνο ως hash, από το Supabase Auth· ποτέ σε αναγνώσιμη μορφή</td><td data-label="Πότε">Πάντα</td></tr>
+<tr><td data-label="Τι">Αποτελέσματα quiz (θέμα, υποκατηγορία, γλώσσα, ερωτήσεις, σωστές, ημερομηνία)</td><td data-label="Γιατί">Η οθόνη στατιστικών σου</td><td data-label="Πότε">Σε κάθε ολοκληρωμένο quiz</td></tr>
+<tr><td data-label="Τι">Στοιχεία παιχνιδιών (αντίπαλος, θέματα, σκορ, χρόνοι απάντησης)</td><td data-label="Γιατί">Τα online παιχνίδια και τα αποτελέσματά τους</td><td data-label="Πότε">Σε κάθε online παιχνίδι</td></tr>
+<tr><td data-label="Τι">Παρουσία (αν είσαι ανενεργός, σε αναζήτηση ή σε παιχνίδι, και πότε σε είδαμε τελευταία)</td><td data-label="Γιατί">Matchmaking, και τερματισμός εγκαταλειμμένων παιχνιδιών</td><td data-label="Πότε">Όσο χρησιμοποιείς το online</td></tr>
+<tr><td data-label="Τι">Αναφορά για ερώτηση</td><td data-label="Γιατί">Για να διορθώνονται οι λανθασμένες ερωτήσεις</td><td data-label="Πότε">Μόνο όταν αναφέρεις κάποια</td></tr>
+</table>
+<p>Αν συνεχίσεις ως επισκέπτης, δημιουργείται ανώνυμος λογαριασμός με το ψευδώνυμο που διαλέγεις. <strong>Δεν έχει email</strong> και δεν συνδέεται με την ταυτότητά σου με κανέναν τρόπο. Αν αργότερα τον κάνεις κανονικό λογαριασμό, κρατά τα ίδια στοιχεία.</p>
+<h2>Τι δεν κάνει η εφαρμογή</h2>
+<ul>
+<li><strong>Καμία διαφήμιση, κανένα διαφημιστικό αναγνωριστικό.</strong></li>
+<li><strong>Κανένα analytics ή tracking SDK.</strong> Τίποτα δεν σου φτιάχνει προφίλ και δεν σε ακολουθεί μεταξύ εφαρμογών.</li>
+<li><strong>Καμία τοποθεσία, επαφές, φωτογραφίες, μικρόφωνο ή κάμερα.</strong> Δεν ζητούνται ποτέ.</li>
+<li><strong>Τίποτα δεν πωλείται και δεν κοινοποιείται</strong> σε κανέναν για σκοπούς μάρκετινγκ.</li>
+</ul>
+<h2>Αναφορές σφαλμάτων</h2>
+<p>Όταν η εφαρμογή συναντήσει απρόσμενο σφάλμα, στέλνει αναφορά στο Sentry για να διορθωθεί. Οι αναφορές είναι ρυθμισμένες να μην μεταφέρουν προσωπικά στοιχεία: η επιλογή που θα επισύναπτε στοιχεία χρήστη είναι απενεργοποιημένη, και τα δικά μας μηνύματα καταγραφής εξαιρούνται σκόπιμα, επειδή μπορούν να αναφέρουν όνομα χρήστη. Μια αναφορά περιέχει το σφάλμα, το σημείο του κώδικα όπου συνέβη, και το μοντέλο συσκευής με την έκδοση του λειτουργικού.</p>
+<h2>Πού αποθηκεύονται τα δεδομένα</h2>
+<ul>
+<li><strong>Βάση δεδομένων και λογαριασμοί:</strong> Supabase, στην ΕΕ (Φρανκφούρτη, <code>eu-central-1</code>).</li>
+<li><strong>Αναφορές σφαλμάτων:</strong> Sentry, στην ΕΕ (Γερμανία).</li>
+</ul>
+<p>Και οι δύο είναι εκτελούντες την επεξεργασία, κατ&#x27; εντολή του DOM Quiz.</p>
+<h2>Πόσο καιρό κρατούνται</h2>
+<p>Ο λογαριασμός σου και τα στοιχεία του κρατούνται μέχρι να τα διαγράψεις. Οι εγγραφές παρουσίας και matchmaking είναι βραχύβιες και καθαρίζονται αυτόματα μέσα σε λίγα λεπτά. Οι αναφορές σφαλμάτων κρατούνται 90 ημέρες, όσο η προεπιλογή του Sentry.</p>
+<h2>Διαγραφή του λογαριασμού σου</h2>
+<p>Άνοιξε την εφαρμογή, πήγαινε <strong>Προφίλ → Επεξεργασία Προφίλ → Διαγραφή λογαριασμού</strong>, και γράψε το όνομα χρήστη σου για επιβεβαίωση.</p>
+<p>Αυτό αφαιρεί το προφίλ, τα στατιστικά, το ιστορικό παιχνιδιών, την παρουσία και τον κωδικό σου, άμεσα και οριστικά. Οι αναφορές που έκανες για λανθασμένες ερωτήσεις κρατούνται, επειδή η ερώτηση εξακολουθεί να είναι λανθασμένη, αλλά η εγγραφή του ποιος τις έκανε σβήνεται.</p>
+<p>Η διαγραφή δεν αναιρείται, και ένα online παιχνίδι σε εξέλιξη τερματίζεται μαζί με τον λογαριασμό.</p>
+<h2>Τα δικαιώματά σου</h2>
+<p>Αν βρίσκεσαι στην ΕΕ ή το Ηνωμένο Βασίλειο, έχεις δικαίωμα πρόσβασης στα δεδομένα σου, διόρθωσης, διαγραφής και εναντίωσης στην επεξεργασία τους. Η διαγραφή είναι ενσωματωμένη στην εφαρμογή, όπως περιγράφεται παραπάνω. Για οτιδήποτε άλλο, γράψε στη διεύθυνση παρακάτω και θα λάβεις απάντηση μέσα σε 30 ημέρες.</p>
+<h2>Παιδιά</h2>
+<p>Το DOM Quiz δεν απευθύνεται σε παιδιά κάτω των 13 ετών και δεν συλλέγει εν γνώσει του τίποτα από αυτά. Αν πιστεύεις ότι ένα παιδί έφτιαξε λογαριασμό, γράψε στη διεύθυνση παρακάτω και θα αφαιρεθεί.</p>
+<h2>Αλλαγές σε αυτήν την πολιτική</h2>
+<p>Αν αλλάξει η πολιτική, αλλάζει και η ημερομηνία στην κορυφή. Αλλαγή που επηρεάζει ουσιαστικά τη διαχείριση των δεδομένων σου θα ανακοινώνεται μέσα στην εφαρμογή.</p>
+<h2>Επικοινωνία</h2>
+<p>Γράψε στο <strong>manosvourtsanis7@gmail.com</strong> για οποιαδήποτε ερώτηση σχετικά με τα δεδομένα σου, για να ζητήσεις αντίγραφό τους, ή για να διαγραφούν.</p></section>
+  <section id="en" hidden><h1>DOM Quiz — Privacy Policy</h1>
+<p><strong>Last updated: 22 November 2026</strong></p>
+<p>DOM Quiz is a quiz game. This page describes exactly what the app stores, where it is stored, and how to have it deleted. It is written against what the code actually does, not against what a template assumes.</p>
+<h2>Who is responsible</h2>
+<p>DOM Quiz is an independent app made by one developer. For any question about your data, or to ask for it to be deleted or exported, write to the contact address at the bottom of this page.</p>
+<h2>What the app stores about you</h2>
+<p>An account is a <strong>username and a password</strong>. Nothing more is required.</p>
+<table>
+<tr><th>What</th><th>Why</th><th>When</th></tr>
+<tr><td data-label="What">Username</td><td data-label="Why">So other players can see who they are playing</td><td data-label="When">Always</td></tr>
+<tr><td data-label="What">Email address</td><td data-label="Why"><strong>Optional.</strong> Only so a forgotten password can be reset</td><td data-label="When">Only if you choose to give one</td></tr>
+<tr><td data-label="What">Password</td><td data-label="Why">To sign you in. Stored only as a hash, by Supabase Auth; never in readable form</td><td data-label="When">Always</td></tr>
+<tr><td data-label="What">Quiz results (topic, subcategory, language, questions answered, correct answers, date)</td><td data-label="Why">Your statistics screen</td><td data-label="When">Each time you finish a quiz</td></tr>
+<tr><td data-label="What">Match records (opponent, chosen topics, score, answer times)</td><td data-label="Why">Online matches and their results</td><td data-label="When">Each online match</td></tr>
+<tr><td data-label="What">Presence (whether you are idle, searching or in a match, and when you were last seen)</td><td data-label="Why">Matchmaking, and ending matches that were abandoned</td><td data-label="When">While you use online mode</td></tr>
+<tr><td data-label="What">Reports about a question</td><td data-label="Why">So broken questions can be corrected</td><td data-label="When">Only when you report one</td></tr>
+</table>
+<p>If you continue as a guest, an anonymous account is created with the nickname you choose. It has <strong>no email address</strong> and is not linked to your identity in any way. If you later turn it into a full account, it keeps the same records.</p>
+<h2>What the app does not do</h2>
+<ul>
+<li><strong>No advertising, and no advertising identifiers.</strong></li>
+<li><strong>No analytics or tracking SDKs.</strong> Nothing profiles you or follows you between apps.</li>
+<li><strong>No location, contacts, photos, microphone or camera.</strong> The app never asks for them.</li>
+<li><strong>Nothing is sold or shared</strong> with anyone for marketing.</li>
+</ul>
+<h2>Crash reports</h2>
+<p>When the app hits an unexpected error it sends a crash report to Sentry so the bug can be fixed. These reports are configured not to carry personal information: the option that would attach user details is switched off, and the app&#x27;s own log messages are deliberately excluded from them, because those can mention a username. A report contains the error, where in the code it happened, and the device model and operating system version.</p>
+<h2>Where your data is stored</h2>
+<ul>
+<li><strong>Database and accounts:</strong> Supabase, in the EU (Frankfurt, <code>eu-central-1</code>).</li>
+<li><strong>Crash reports:</strong> Sentry, in the EU (Germany).</li>
+</ul>
+<p>Both are data processors acting on instructions from DOM Quiz.</p>
+<h2>How long it is kept</h2>
+<p>Your account and its records are kept until you delete them. Presence and matchmaking rows are short-lived and cleaned up automatically within minutes. Crash reports are kept for 90 days by Sentry&#x27;s default retention.</p>
+<h2>Deleting your account</h2>
+<p>Open the app, go to <strong>Profile → Edit Profile → Delete account</strong>, and type your username to confirm.</p>
+<p>This removes your profile, your statistics, your match history, your presence and your password, immediately and permanently. Reports you filed about broken questions are kept, because the question is still broken, but the record of who filed them is erased.</p>
+<p>Deleting cannot be undone, and an online match in progress ends when the account goes.</p>
+<h2>Your rights</h2>
+<p>If you are in the EU or the UK, you have the right to access your data, correct it, have it deleted, and object to how it is handled. Deletion is built into the app, as described above. For anything else, write to the contact address below and you will get an answer within 30 days.</p>
+<h2>Children</h2>
+<p>DOM Quiz is not directed at children under 13 and does not knowingly collect anything from them. If you believe a child has made an account, write to the address below and it will be removed.</p>
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the date at the top changes with it. A change that materially affects how your data is handled will be announced in the app.</p>
+<h2>Contact</h2>
+<p>Write to <strong>manosvourtsanis7@gmail.com</strong> with any question about your data, to ask for a copy of it, or to have it deleted.</p></section>
+</main>
+<script>
+  const sections = { el: document.getElementById('el'), en: document.getElementById('en') };
+  const buttons = { el: document.getElementById('btn-el'), en: document.getElementById('btn-en') };
+
+  function show(lang) {
+    for (const key of Object.keys(sections)) {
+      sections[key].hidden = key !== lang;
+      buttons[key].setAttribute('aria-selected', String(key === lang));
+    }
+    document.documentElement.lang = lang;
+  }
+
+  for (const key of Object.keys(buttons)) {
+    buttons[key].addEventListener('click', () => show(key));
+  }
+
+  // Greek first for a Greek browser, English otherwise.
+  show((navigator.language || 'en').toLowerCase().startsWith('el') ? 'el' : 'en');
+</script>
+</body>
+</html>
